@@ -7,8 +7,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
 <script>
-
-
 document.addEventListener("DOMContentLoaded", function() {
   fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQl1uynxsP9DsdwPYL5MKmvCpr3-Z6GVr1zTGfdvQxXePlvZLPz3gSN10ud1YX8tVbbbveycQdq3BAm/pub?output=tsv")
     .then(response => response.text())
@@ -18,6 +16,41 @@ document.addEventListener("DOMContentLoaded", function() {
       const container = document.getElementById("jobs-container");
 
       let activeEmbed = null; // track currently playing video
+
+      // helper: attach click handler to a thumbnail
+      function attachThumbClick(embedEl, videoId) {
+        const thumb = embedEl.querySelector(".yt-thumb");
+        if (thumb) {
+          thumb.addEventListener("click", () => {
+            // unload previous active
+            if (activeEmbed && activeEmbed !== embedEl) {
+              const prevId = activeEmbed.dataset.videoId;
+              activeEmbed.innerHTML = `
+                <div class="overlay">▶</div>
+                <div class="yt-thumb" style="border-radius:12px 12px 0 0;
+                  background-size: cover; background-position: center;
+                  background-image:url('https://img.youtube.com/vi/${prevId}/sddefault.jpg')">
+                </div>
+              `;
+              attachThumbClick(activeEmbed, prevId);
+            }
+
+            // set this as active
+            embedEl.dataset.videoId = videoId;
+            activeEmbed = embedEl;
+
+            // load iframe
+            embedEl.innerHTML = `
+              <iframe width="100%" height="100%"
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            `;
+          });
+        }
+      }
 
       rows.forEach(cols => {
         const item = {
@@ -36,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
           } else if (ytUrl.hostname === "youtu.be") {
             videoId = ytUrl.pathname.slice(1);
           }
-        } catch(e) {
+        } catch (e) {
           console.warn("Invalid URL:", item.link);
         }
 
@@ -46,54 +79,36 @@ document.addEventListener("DOMContentLoaded", function() {
         const ytEmbed = document.createElement("div");
         ytEmbed.className = "yt-embed";
 
-        if(videoId){
+        if (videoId) {
+          ytEmbed.dataset.videoId = videoId;
           ytEmbed.innerHTML = `
-            <div class="overlay">▶</div><div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
-              background-position: center;background-image:url('https://img.youtube.com/vi/${videoId}/sddefault.jpg')">
+            <div class="overlay">▶</div>
+            <div class="yt-thumb" style="border-radius:12px 12px 0 0;
+              background-size: cover; background-position: center;
+              background-image:url('https://img.youtube.com/vi/${videoId}/sddefault.jpg')">
             </div>
           `;
-
-          ytEmbed.querySelector(".yt-thumb").addEventListener("click", () => {
-            // Pause/remove previous active embed
-            if(activeEmbed && activeEmbed !== ytEmbed) {
-              activeEmbed.innerHTML = activeEmbed.querySelector(".yt-thumb") 
-                ? activeEmbed.innerHTML  
-                : ` <div class="overlay">▶</div><div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
-                  background-position: center;background-image:url('https://img.youtube.com/vi/${activeEmbed.dataset.videoId}/sddefault.jpg')"></div>`;
-            }
-
-            // Set current as active
-            activeEmbed = ytEmbed;
-            ytEmbed.dataset.videoId = videoId;
-
-            // Load iframe
-            ytEmbed.innerHTML = `
-              <iframe width="100%" height="100%"
-                src="https://www.youtube.com/embed/${videoId}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            `;
-          });
+          attachThumbClick(ytEmbed, videoId);
         } else {
           ytEmbed.innerHTML = `<div style="width:100%; height:100%; background:#ccc; display:flex; align-items:center; justify-content:center;">No Video</div>`;
         }
 
         const jobData = document.createElement("div");
-jobData.className = "job-data";
-jobData.innerHTML = `
-  <div class="left-col">
-    <div class="top-info"><div class="name">${item.name}</div><div class="site">${item.site}</div></div>
-    <div class="role">
-      ${item.role.split(",").map(role => `<div class="role-sub">${role.trim()}</div>`).join('')}
-    </div>
-   <div class="role">
-      ${item.setup.split(",").map(setup => `<div class="role-sub">${setup.trim()}</div>`).join('')}
-    </div>
-  </div>
- 
-`;
+        jobData.className = "job-data";
+        jobData.innerHTML = `
+          <div class="left-col">
+            <div class="top-info">
+              <div class="name">${item.name}</div>
+              <div class="site">${item.site}</div>
+            </div>
+            <div class="role">
+              ${item.role.split(",").map(role => `<div class="role-sub">${role.trim()}</div>`).join('')}
+            </div>
+            <div class="role">
+              ${item.setup.split(",").map(setup => `<div class="role-sub">${setup.trim()}</div>`).join('')}
+            </div>
+          </div>
+        `;
 
         jobItem.appendChild(ytEmbed);
         jobItem.appendChild(jobData);
@@ -102,8 +117,8 @@ jobData.innerHTML = `
     })
     .catch(err => console.error("Erro carregando TSV:", err));
 });
-
 </script>
+
 <style>
 .role {
     display: flex;
@@ -434,6 +449,7 @@ h2 {
 "><h2>2025 - Lucas Silva</h2></div></div>
 
 </body></html>
+
 
 
 
