@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if(activeEmbed && activeEmbed !== ytEmbed) {
               activeEmbed.innerHTML = activeEmbed.querySelector(".yt-thumb") 
                 ? activeEmbed.innerHTML 
-                : `<div class="yt-thumb" style="border-radius:12px;background-size: cover;
+                : `<div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
                   background-position: center;background-image:url('https://img.youtube.com/vi/${activeEmbed.dataset.videoId}/sddefault.jpg')"></div>`;
             }
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Load iframe
             ytEmbed.innerHTML = `
               <iframe width="100%" height="100%"
-                src="https://www.youtube.com/embed/${videoId}"
+                src="https://www.youtube.com/embed/${videoId}&autoplay=1"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
@@ -472,5 +472,6 @@ h2 {
 <div id="jobs-container"></div><h2>2025 - Lucas Silva</h2></div>
 
 </body></html>
+
 
 
