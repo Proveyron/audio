@@ -118,15 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .catch(err => console.error("Erro carregando TSV:", err));
 });
 
-const zapCta = document.querySelector(".zap-cta");
-  if (zapCta) {
-    zapCta.addEventListener("click", () => {
-      const phone = "5521968218571"; 
-      const message = encodeURIComponent("olá, venho do portfolio.");
-      const url = `https://wa.me/${phone}?text=${message}`;
-      window.open(url, "_blank");
-    });
-  }
+
 
 	
 </script>
@@ -442,11 +434,11 @@ h2 {
 </style>
 </head>
 <body>
-<div class="zap-cta"><img src="zap.svg" style="
+<a href="https://api.whatsapp.com/send/?phone=%2B5521968218571&text=Ol%C3%A1,%20venho%20do%20portfolio.&type=phone_number"><div class="zap-cta"><img src="zap.svg" style="
     width: 70px;
     /* box-shadow: 0px 0px 15px; */
     /* border-radius: 110px; */
-"></div>
+"></div></a>
 <div class="gradient-bg"><div class="profile-pic"><img src="profile.jpg" style="
     width: 250px;
     border-radius: 1000px;
@@ -461,6 +453,7 @@ h2 {
 "><h2>2025 - Lucas Silva</h2></div></div>
 
 </body></html>
+
 
 
 
