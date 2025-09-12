@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(videoId){
           ytEmbed.innerHTML = `
-            <div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
+           <div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
               background-position: center;background-image:url('https://img.youtube.com/vi/${videoId}/sddefault.jpg')">
-            </div>
+             <div class="overlay">▶</div></div>
           `;
 
           ytEmbed.querySelector(".yt-thumb").addEventListener("click", () => {
@@ -395,6 +395,19 @@ h2 {
     right: 5px;
     z-index: 9;
 }
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: #00000000;
+    z-index: 20;
+    top: 0;
+    display: flex;
+    position: absolute;
+    font-size: 100px;
+    align-items: center;
+    opacity: 0.7;
+    justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -477,7 +490,6 @@ h2 {
 "><h2>2025 - Lucas Silva</h2></div></div>
 
 </body></html>
-
 
 
 
