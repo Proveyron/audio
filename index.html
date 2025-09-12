@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(videoId){
           ytEmbed.innerHTML = `
-            <div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
+            <div class="overlay">▶</div><div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
               background-position: center;background-image:url('https://img.youtube.com/vi/${videoId}/sddefault.jpg')">
             </div>
           `;
@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // Pause/remove previous active embed
             if(activeEmbed && activeEmbed !== ytEmbed) {
               activeEmbed.innerHTML = activeEmbed.querySelector(".yt-thumb") 
-                ? activeEmbed.innerHTML 
-                : `<div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
+                ? activeEmbed.innerHTML  
+                : ` <div class="overlay">▶</div><div class="yt-thumb" style="border-radius:12px 12px 0px 0px;background-size: cover;
                   background-position: center;background-image:url('https://img.youtube.com/vi/${activeEmbed.dataset.videoId}/sddefault.jpg')"></div>`;
             }
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Load iframe
             ytEmbed.innerHTML = `
               <iframe width="100%" height="100%"
-                src="https://www.youtube.com/embed/${videoId}&autoplay=1"
+                src="https://www.youtube.com/embed/${videoId}"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
@@ -135,17 +135,34 @@ jobData.innerHTML = `
   body {
     m
     width: 100%;
+    height: 100%;
     background: #ffffff;
     position: absolute;
     color: #FFF;
+    /* border-radius: 12px; */
     z-index: 9;
+    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     font-family: "Merriweather Sans", sans-serif;
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 100%;
     align-items: center;
-  
+    min-height: 100vh;
+  }
+  .job-data {
+    display: flex;
+    width: 100%;
+    /* padding: 15px; */
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 
 .yt-embed {
   position: relative;
@@ -171,7 +188,7 @@ jobData.innerHTML = `
     /* border-radius: 12px 12px 0px 0px; */
 }
 
-iframe {
+iframe { 
     border-radius: 12px 12px 0px 0px;
 }
 
@@ -384,73 +401,25 @@ h2 {
     bottom: 5px;
     /* width: 38px; */
     right: 5px;
-    z-index: 9;
+    /* z-index: 9; */
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: #00000000;
+    z-index: 20;
+    top: 0;
+    display: flex;
+    position: absolute;
+    font-size: 100px;
+    pointer-events: none;
+    align-items: center;
+    opacity: 0.7;
+    justify-content: center;
 }
 </style>
 </head>
 <body>
-
-<!
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    right: 5px;
-    /* z-index: 9; */
-    display: flex;
-    background: #0000009c;
-    flex-direction: column;
-    align-items: center;
-">
-
-  <h1>Lucas Silva | Áudio</h1>
-
-  <div  style="display: none;" class="cards">
-    <div class="card">
-      <div class="icon" style="
-   
-"><img src="mix.png" style="
-    height: 90%;
-"></div>
-      <div class="content">
-        <div class="title">Mix / Master</div>
-        <button class="cta">Ver trabalhos</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon" style="
-   
-"><img src="rec.png" style="
-    height: 90%;
-"></div>
-      <div class="content">
-        <div class="title">Captação</div>
-        <button class="cta">Ver trabalhos</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon" style="
-   
-"><img src="edit.png" style="
-    height: 90%;
-"></div>
-      <div class="content">
-        <div class="title">Edição</div>
-        <button class="cta">Ver trabalhos</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon" style="
-   
-"><img src="tune.png" style="
-    height: 90%;
-"></div>
-      <div class="content">
-        <div class="title">Afinação de Voz</div>
-        <button class="cta">Ver trabalhos</button>
-      </div>
-    </div>
-  </div>
-  </div> -->
 <div class="zap-cta"><img src="zap.svg" style="
     width: 70px;
     /* box-shadow: 0px 0px 15px; */
