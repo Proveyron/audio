@@ -230,12 +230,13 @@ div#jobs-container {
 
   
   .jobs-container {
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(2px);
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
-    background: #0000009c;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
 }
 
@@ -250,15 +251,13 @@ div#jobs-container {
     align-items: flex-start;
     width: 95%;
     height: 22%;
-	max-width:550px;
-    margin: 15px 0;
-	font-size:12px;
+    max-width: 550px;
+    margin: 10px;
+    font-size: 12px;
     border-radius: 12px;
     padding: 0;
     box-sizing: border-box;
-    transition: transform 0.3s 
-ease, box-shadow 0.3s 
-ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeInUp 1.2s forwards;
     flex-direction: column;
 }
@@ -453,6 +452,7 @@ h2 {
 "><h2>2025 - Lucas Silva</h2></div></div>
 
 </body></html>
+
 
 
 
