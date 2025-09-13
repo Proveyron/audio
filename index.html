@@ -10,7 +10,7 @@
             window.addEventListener("load", () => {
                 const loader = document.getElementById("loader");
                 if (loader) {
-                    
+
                     setTimeout( () => loader.classList.add("fade-out"), 3000);
                     setTimeout( () => loader.style.display = "none", 3800);
                     // remove after fade
@@ -37,7 +37,7 @@
                                     const prevId = activeEmbed.dataset.videoId;
                                     activeEmbed.innerHTML = `
                 <div class="overlay">▶</div>
-                <div class="yt-thumb" style="border-radius:12px 12px 0 0;
+                <div class="yt-thumb" style="border-radius:0px 0px 0 0;
                   background-size: cover; background-position: center;
                   background-image:url('https://img.youtube.com/vi/${prevId}/sddefault.jpg')">
                 </div>
@@ -94,7 +94,7 @@
                             ytEmbed.dataset.videoId = videoId;
                             ytEmbed.innerHTML = `
             <div class="overlay">▶</div>
-            <div class="yt-thumb" style="border-radius:12px 12px 0 0;
+            <div class="yt-thumb" style="border-radius:0px 0px 0 0;
               background-size: cover; background-position: center;
               background-image:url('https://img.youtube.com/vi/${videoId}/sddefault.jpg')">
             </div>
@@ -138,13 +138,16 @@
                 animation-fill-mode: both;
                 animation: bblFadInOut 1.8s infinite ease-in-out;
             }
-			#loader {
-    opacity: 1;
-    transition: opacity 0.8s ease; /* smooth fade */
-  }
-  #loader.fade-out {
-    opacity: 0;
-  }
+
+            #loader {
+                opacity: 1;
+                transition: opacity 0.8s ease;
+                /* smooth fade */
+            }
+
+            #loader.fade-out {
+                opacity: 0;
+            }
 
             .loader {
                 color: #bebec1;
@@ -189,30 +192,33 @@
                 margin: 0px 10px 0px 0px;
                 padding: 8px 10px;
                 width: max-content;
-                text-shadow: 1px 1px 0px #000;
-                border-radius: 8px;
-                background: linear-gradient(126deg, #0032ff8a, #5619898a);
+                /* text-shadow: 1px 1px 0px #000; */
+                /* border-radius: 5px; */
+                background: #6e00ff;
+                /* background: linear-gradient(126deg, #0032ff8a, #5619898a); */
             }
-			
-			div#loader {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 101;
-}
+
+            div#loader {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 101;
+            }
+
             .name, .site {
                 background: #FFF;
                 padding: 8px 10px;
                 width: max-content;
-                text-shadow: 1px 1px 0px #000;
+                /* text-shadow: 1px 1px 0px #000; */
                 color: #ffffff;
                 max-width: 49%;
-                background: linear-gradient(126deg, #ab0000, #ff0000);
-                border-radius: 8px;
+                /* background: linear-gradient(126deg, #ab0000, #ff0000); */
+                /* border-radius: 5px; */
+                background: #f52b2b;
                 display: flex;
                 align-items: center;
             }
@@ -244,7 +250,7 @@
                 position: relative;
                 width: 100%;
                 /* full width of parent */
-                padding-top: 56.25%;
+                padding-top: 56%;
                 /* 16:9 aspect ratio */
                 overflow: hidden;
             }
@@ -264,7 +270,7 @@
             }
 
             iframe {
-                border-radius: 12px 12px 0px 0px;
+                /* border-radius: 12px 12px 0px 0px; */
             }
 
             div#jobs-container {
@@ -305,11 +311,11 @@
             }
 
             .job-item {
-                background: rgb(71 71 71 / 21%);
-                box-shadow: 0 4px 30px rgb(0 0 0 / 36%);
-                backdrop-filter: blur(6.3px);
+                background: rgb(55 55 55);
+                /* box-shadow: 0 4px 30px rgb(0 0 0 / 36%); */
+                /* backdrop-filter: blur(6.3px); */
                 -webkit-backdrop-filter: blur(6.3px);
-                border: 1px solid rgb(255 255 255 / 25%);
+                /* border: 1px solid rgb(255 255 255 / 25%); */
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
@@ -318,7 +324,7 @@
                 max-width: 550px;
                 margin: 10px;
                 font-size: 12px;
-                border-radius: 12px;
+                /*border-radius: 12px;*/
                 padding: 0;
                 box-sizing: border-box;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -421,7 +427,8 @@
 
             .gradient-bg {
                 width: 100%;
-                background: linear-gradient(270deg, #ff5f6d, #ffc371, #24c6dc, #514a9d);
+                background: #575757;
+                /* background: linear-gradient(270deg, #ff5f6d, #ffc371, #24c6dc, #514a9d); */
                 background-size: 800% 800%;
                 animation: gradientMove 20s ease infinite;
             }
@@ -474,7 +481,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                text-shadow: 1px 1px 0px #000;
+                /* text-shadow: 1px 1px 0px #000; */
             }
 
             img {
@@ -529,7 +536,10 @@
             }
         </style>
     </head>
-    <body><div id="loader"><span class="loader"></span></div>
+    <body>
+        <div id="loader">
+            <span class="loader"></span>
+        </div>
         <a href="https://api.whatsapp.com/send/?phone=%2B5521968218571&text=Ol%C3%A1,%20venho%20do%20portfolio.&type=phone_number">
             <div class="zap-cta">
                 <img src="zap.svg" style="
@@ -551,6 +561,7 @@
                     <br>
                     Confira abaixo algumas produções em que pude trabalhar, e meu papel em cada uma delas.<br>
                     <br>Você pode clicar nas imagens para assistir um trecho de cada produção.
+                
                 
                 </h2>
             </div>
