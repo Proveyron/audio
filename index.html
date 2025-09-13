@@ -7,6 +7,16 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
         <script>
+            window.addEventListener("load", () => {
+                const loader = document.getElementById("loader");
+                if (loader) {
+                    
+                    setTimeout( () => loader.classList.add("fade-out"), 3000);
+                    setTimeout( () => loader.style.display = "none", 3800);
+                    // remove after fade
+                }
+            }
+            );
             document.addEventListener("DOMContentLoaded", function() {
                 fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQl1uynxsP9DsdwPYL5MKmvCpr3-Z6GVr1zTGfdvQxXePlvZLPz3gSN10ud1YX8tVbbbveycQdq3BAm/pub?output=tsv").then(response => response.text()).then(text => {
                     const rows = text.trim().split("\n").map(r => r.split("\t"));
@@ -121,6 +131,55 @@
             });
         </script>
         <style>
+            .loader, .loader:before, .loader:after {
+                border-radius: 50%;
+                width: 2.5em;
+                height: 2.5em;
+                animation-fill-mode: both;
+                animation: bblFadInOut 1.8s infinite ease-in-out;
+            }
+			#loader {
+    opacity: 1;
+    transition: opacity 0.8s ease; /* smooth fade */
+  }
+  #loader.fade-out {
+    opacity: 0;
+  }
+
+            .loader {
+                color: #bebec1;
+                font-size: 7px;
+                position: relative;
+                text-indent: -9999em;
+                transform: translateZ(0);
+                animation-delay: -0.16s;
+            }
+
+            .loader:before, .loader:after {
+                content: '';
+                position: absolute;
+                top: 0;
+            }
+
+            .loader:before {
+                left: -3.5em;
+                animation-delay: -0.32s;
+            }
+
+            .loader:after {
+                left: 3.5em;
+            }
+
+            @keyframes bblFadInOut {
+                0%, 80%, 100% {
+                    box-shadow: 0 2.5em 0 -1.3em
+                }
+
+                40% {
+                    box-shadow: 0 2.5em 0 0
+                }
+            }
+
             .role {
                 display: flex;
             }
@@ -134,7 +193,17 @@
                 border-radius: 8px;
                 background: linear-gradient(126deg, #0032ff8a, #5619898a);
             }
-
+			
+			div#loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+}
             .name, .site {
                 background: #FFF;
                 padding: 8px 10px;
@@ -186,9 +255,6 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-            }
-
-            .job-item {
             }
 
             .yt-embed {
@@ -256,7 +322,6 @@
                 padding: 0;
                 box-sizing: border-box;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
-                animation: fadeInUp 1.2s forwards;
                 flex-direction: column;
             }
 
@@ -464,7 +529,7 @@
             }
         </style>
     </head>
-    <body>
+    <body><div id="loader"><span class="loader"></span></div>
         <a href="https://api.whatsapp.com/send/?phone=%2B5521968218571&text=Ol%C3%A1,%20venho%20do%20portfolio.&type=phone_number">
             <div class="zap-cta">
                 <img src="zap.svg" style="
@@ -486,6 +551,7 @@
                     <br>
                     Confira abaixo algumas produções em que pude trabalhar, e meu papel em cada uma delas.<br>
                     <br>Você pode clicar nas imagens para assistir um trecho de cada produção.
+                
                 </h2>
             </div>
             <div id="jobs-container"></div>
