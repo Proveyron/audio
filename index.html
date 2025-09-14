@@ -5,8 +5,9 @@
         <title>Lucas Silva | Áudio</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <script>
+
             window.addEventListener("load", () => {
                 const loader = document.getElementById("loader");
                 if (loader) {
@@ -151,7 +152,6 @@
 
             .loader {
                 color: #bebec1;
-                font-size: 7px;
                 position: relative;
                 text-indent: -9999em;
                 transform: translateZ(0);
@@ -185,17 +185,13 @@
 
             .role {
                 display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
+                width: 100%;
                 justify-content: flex-start;
-                align-items: center;
-                align-content: center;
-                gap: 10px;
             }
 
             .role-sub, .setup {
                 /* background: #000; */
-                margin: 0px 0px 0px 0px;
+                margin: 0px 10px 0px 0px;
                 padding: 8px 10px;
                 width: max-content;
                 /* text-shadow: 1px 1px 0px #000; */
@@ -230,12 +226,15 @@
             }
 
             body {
-                width: 100%;
+                width: 100vw;
                 background: #ffffff;
                 position: absolute;
                 color: #FFF;
+                font-size: 10pt;
+                font-weight: 500;
                 z-index: 9;
-                font-family: "Merriweather Sans", sans-serif;
+                overflow-x: hidden;
+                font-family: "Inter", sans-serif;
                 display: flex;
                 flex-direction: column;
                 margin: 0;
@@ -245,11 +244,11 @@
             .job-data {
                 display: flex;
                 width: 100%;
-                /* padding: 15px; */
+                padding: 10px 0px;
                 flex-direction: row;
                 align-content: center;
-                justify-content: space-between;
-                align-items: flex-start;
+                justify-content: center;
+                align-items: center;
             }
 
             .yt-embed {
@@ -293,7 +292,6 @@
 
             h1 {
                 margin-top: 15px;
-                font-size: 20px;
                 /* height: 15vh; */
                 margin-bottom: 0;
                 display: flex;
@@ -329,7 +327,6 @@
                 height: 22%;
                 max-width: 550px;
                 margin: 10px;
-                font-size: 12px;
                 /*border-radius: 12px;*/
                 padding: 0;
                 box-sizing: border-box;
@@ -349,9 +346,10 @@
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
-                width: 100%;
-                padding: 10px;
+                width: calc(100% - 20px);
+                /* padding: 10px; */
                 justify-content: space-between;
+                align-items: flex-start;
             }
 
             .right-col {
@@ -455,15 +453,13 @@
 
             /* Left icon */
             .card .icon {
-                font-size: 3rem;
             }
 
             .top-info {
                 display: flex;
                 justify-content: space-between;
                 flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
+                < link href="https: //fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">; width: 100%;
             }
 
             /* Right content */
@@ -477,8 +473,6 @@
             }
 
             .card .title {
-                font-size: 1.5rem;
-                font-weight: bold;
             }
 
             .profile-pic {
@@ -496,7 +490,6 @@
             }
 
             h2 {
-                font-size: 15px;
                 width: 90%;
                 text-align: center;
                 margin: 15px 0px;
@@ -507,7 +500,7 @@
                 color: #ffffff;
                 border: none;
                 box-shadow: 0px 0px 20px #00000052;
-                font-family: "Merriweather Sans", sans-serif;
+                font-family: "Inter", sans-serif;
                 padding: 0.6rem 1.1rem;
                 border-radius: 5px;
                 font-weight: bold;
@@ -536,7 +529,7 @@
                 top: 0;
                 display: flex;
                 position: absolute;
-                font-size: 100px;
+                font-size: 40px;
                 pointer-events: none;
                 align-items: center;
                 opacity: 0.7;
